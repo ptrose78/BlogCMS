@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import PostContent from "@/app/components/PostContent";
 
 export default async function PostPage({ params }: { params: { id: string } }) {
-    const post = await fetchPostById(Number(params.id));
+    const id = Number(params.id); // Convert id to a number
+    const post = await fetchPostById(id);
 
     if (!post) {
         notFound();

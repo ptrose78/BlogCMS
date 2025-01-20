@@ -27,7 +27,7 @@ interface Post {
     archived?: boolean;
 }
 
-export default function PostForm({ initialPost }: { initialPost?: Post }) {
+export default function PostForm({ initialPost, onPostCreated }: { initialPost?: Post; onPostCreated?: (post: Post) => void }) {
     const initialContent = initialPost?.content
         ? EditorState.createWithContent(convertFromRaw(JSON.parse(initialPost.content)))
         : EditorState.createEmpty();
@@ -98,6 +98,7 @@ export default function PostForm({ initialPost }: { initialPost?: Post }) {
                         onChange={handlePostChange}
                         value={post.title || ""}
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                        autoComplete="on"
                         required
                     />
                 </div>
@@ -112,6 +113,7 @@ export default function PostForm({ initialPost }: { initialPost?: Post }) {
                         onChange={handlePostChange}
                         value={post.excerpt || ""}
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                        autoComplete="on"
                         required
                     />
                     <label htmlFor="content" className="block mt-3 text-sm font-medium text-gray-700">
@@ -152,6 +154,7 @@ export default function PostForm({ initialPost }: { initialPost?: Post }) {
                             editorState={editorState}
                             onChange={setEditorState}
                             placeholder="Write your post content here..."
+                            autoComplete="on"
                         />
                     </div>
                 </div>

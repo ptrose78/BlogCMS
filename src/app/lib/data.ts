@@ -10,7 +10,7 @@ export async function fetchPosts() {
       const sql = neon(process.env.POSTGRES_URL);
       const posts = await sql`
         SELECT * FROM posts`
-        
+      
        return posts
     } catch(error) {
       console.error("Database error:", error);
@@ -25,7 +25,7 @@ export async function fetchPostById(id: number) {
   
       const post = await sql`
       SELECT * FROM posts WHERE id = ${id} LIMIT 1`;
-  
+     
       return post[0] || null;
   
     } catch(error){
@@ -109,7 +109,6 @@ export async function updatePost(id: number, post: { title?: string; content?: s
           return { success: false, message: "Post not found." }; // No rows updated, post doesn't exist
       }
 
-      revalidatePath("/admin/blog")
       return { success: true, message: "Post updated successfully." };
   } catch (error) {
       console.error("Database error:", error);

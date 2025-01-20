@@ -45,10 +45,8 @@ export default function Login() {
           setMessage('An unexpected error occurred.');
       }
   };
-
-
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex items-center justify-center mt-16 bg-gray-100">
             <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded shadow-md">
                 <h1 className="text-2xl font-semibold text-center text-gray-700 mb-6">Login</h1>
 
